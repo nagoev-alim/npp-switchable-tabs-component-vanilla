@@ -1,0 +1,112 @@
+@import "assets/scss/config/fonts";
+@import "assets/scss/config/reset";
+@import "assets/scss/config/vars";
+@import "assets/scss/config/utility";
+@import "assets/scss/modules/typography";
+@import "assets/scss/modules/fields";
+@import "assets/scss/modules/buttons";
+@import "assets/scss/modules/toast";
+@import "assets/scss/config/global";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.app-author {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.app-container {
+  --gap: 15px;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.tabs {
+  max-width: 700px;
+  width: 100%;
+  display: grid;
+  gap: var(--gap);
+
+  .title {
+    text-align: center;
+  }
+
+  button {
+    width: 100%;
+    border-radius: 0;
+    pointer-events: none;
+    font-weight: var(--fw-600);
+  }
+
+  li.active button {
+    background-color: var(--bcp-grey);
+    color: #fff;
+  }
+
+  &-item {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05), 0 25px 35px rgba(0, 0, 0, 0.03);
+    border-radius: 8px;
+    display: grid;
+
+    &--horizontal {
+      .tabs__header {
+        display: grid;
+
+        @media (min-width: 576px) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    }
+
+    &--vertical {
+
+      @media (min-width: 576px) {
+        grid-template-columns: 200px 1fr;
+      }
+
+      .tabs__header {
+        border-right: 1px solid rgba(0, 0, 0, 0.15);
+      }
+
+      button {
+        justify-content: flex-start;
+      }
+    }
+  }
+
+  .tabs__header li {
+    cursor: pointer;
+  }
+
+  .tabs__body {
+    min-height: 200px;
+    position: relative;
+
+    li {
+      padding: 10px;
+      display: grid;
+      gap: 10px;
+      transition: all 0.55s ease;
+    }
+
+    li:not(.active) {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      z-index: -99;
+    }
+
+    li.active {
+      opacity: 1;
+      visibility: visible;
+      position: static;
+    }
+  }
+}
